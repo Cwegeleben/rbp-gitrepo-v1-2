@@ -1,12 +1,12 @@
 import {
+  createHotContext
+} from "/build/_shared/chunk-WZ5TJBLN.js";
+import {
   require_react_dom
 } from "/build/_shared/chunk-U4FRFQSK.js";
 import {
   require_react
 } from "/build/_shared/chunk-7M6SC7J5.js";
-import {
-  createHotContext
-} from "/build/_shared/chunk-WZ5TJBLN.js";
 import {
   __commonJS,
   __esm,
@@ -9475,7 +9475,7 @@ var LiveReload = (
       console.warn(["`<LiveReload />` is obsolete when using Vite and can conflict with Vite's built-in HMR runtime.", "", "Remove `<LiveReload />` from your code and instead only use `<Scripts />`.", "Then refresh the page to remove lingering scripts from `<LiveReload />`."].join("\n"));
       return null;
     }
-    origin ??= "https://chorus-forth-includes-naval.trycloudflare.com/";
+    origin ??= "https://sitting-interview-thompson-horse.trycloudflare.com/";
     let js = String.raw;
     return /* @__PURE__ */ React8.createElement("script", {
       nonce,
@@ -10291,4 +10291,4 @@ react-router-dom/dist/index.js:
    * @license MIT
    *)
 */
-//# sourceMappingURL=/build/_shared/chunk-Y5YLZZX5.js.map
+//# sourceMappingURL=/build/_shared/chunk-QVPUEGYJ.js.map

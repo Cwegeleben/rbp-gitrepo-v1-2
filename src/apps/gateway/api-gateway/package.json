@@ -3,10 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "remix dev -c 'remix-serve build/index.js'",
+    "dev": "remix dev -c 'remix-serve build/index.js --port $PORT --host 0.0.0.0'",
     "build": "remix build",
-    "start": "remix-serve build/index.js",
-    "dev": "remix dev -c 'remix-serve build/index.js --port $PORT --host 0.0.0.0'"
+    "start": "remix-serve build/index.js"
   },
   "dependencies": {
     "@remix-run/node": "^2.11.1",

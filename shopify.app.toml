@@ -3,7 +3,7 @@
 client_id = "c2878634e703f7baa694ee1c0a4e57d2"
 name = "rod-builder-pro"
 handle = "rod-builder-pro-2"
-application_url = "https://chorus-forth-includes-naval.trycloudflare.com"
+application_url = "https://sitting-interview-thompson-horse.trycloudflare.com"
 embedded = true
 
 [webhooks]
@@ -14,10 +14,10 @@ api_version = "2025-07"
 scopes = "write_products"
 
 [auth]
-redirect_urls = ["https://chorus-forth-includes-naval.trycloudflare.com/auth/callback", "https://chorus-forth-includes-naval.trycloudflare.com/auth/shopify/callback", "https://chorus-forth-includes-naval.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://sitting-interview-thompson-horse.trycloudflare.com/auth/callback", "https://sitting-interview-thompson-horse.trycloudflare.com/auth/shopify/callback", "https://sitting-interview-thompson-horse.trycloudflare.com/api/auth/callback"]
 
 [app_proxy]
-url = "https://chorus-forth-includes-naval.trycloudflare.com/apps/rbp"
+url = "https://sitting-interview-thompson-horse.trycloudflare.com/apps/rbp"
 subpath = "rbp"
 prefix = "apps"
 

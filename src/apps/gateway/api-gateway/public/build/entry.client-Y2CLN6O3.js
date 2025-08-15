@@ -3,7 +3,8 @@ import {
 } from "/build/_shared/chunk-O4BRYNJ4.js";
 import {
   RemixBrowser
-} from "/build/_shared/chunk-Y5YLZZX5.js";
+} from "/build/_shared/chunk-QVPUEGYJ.js";
+import "/build/_shared/chunk-WZ5TJBLN.js";
 import {
   require_jsx_dev_runtime
 } from "/build/_shared/chunk-XGOTYLZ5.js";
@@ -11,7 +12,6 @@ import "/build/_shared/chunk-U4FRFQSK.js";
 import {
   require_react
 } from "/build/_shared/chunk-7M6SC7J5.js";
-import "/build/_shared/chunk-WZ5TJBLN.js";
 import "/build/_shared/chunk-UWV35TSL.js";
 import {
   __toESM
@@ -35,4 +35,4 @@ var import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime());
     }, this)
   );
 });
-//# sourceMappingURL=/build/entry.client-IUTD27H5.js.map
+//# sourceMappingURL=/build/entry.client-Y2CLN6O3.js.map
