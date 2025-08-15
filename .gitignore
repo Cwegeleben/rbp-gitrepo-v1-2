@@ -3,3 +3,8 @@ dist
 .env
 .DS_Store
 shopify.app.*.toml.backup*
+
+.shopify
+
+# Shopify CLI
+.shopify
