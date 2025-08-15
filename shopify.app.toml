@@ -1,0 +1,32 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "c2878634e703f7baa694ee1c0a4e57d2"
+name = "rod-builder-pro"
+handle = "rod-builder-pro-2"
+application_url = "https://choice-bloggers-algorithms-block.trycloudflare.com/"
+embedded = true
+
+[webhooks]
+api_version = "2025-07"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://choice-bloggers-algorithms-block.trycloudflare.com/auth/callback",
+  "https://choice-bloggers-algorithms-block.trycloudflare.com/auth/shopify/callback",
+  "https://choice-bloggers-algorithms-block.trycloudflare.com/api/auth/callback"
+]
+[web]
+path = "src/apps/gateway/api-gateway"
+command = "npm run dev"
+
+[app_proxy]
+url = "https://choice-bloggers-algorithms-block.trycloudflare.com/apps/rbp"
+subpath = "rbp"
+prefix = "apps"
+
+[pos]
+embedded = false
