@@ -15,6 +15,8 @@ model Tenant {
 
   collections Collection[]
   products    Product[]
+  builds      Build[]
+  lists       List[]
 }
 
 model Collection {
@@ -36,3 +38,53 @@ model Product {
   tenant     Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   collection Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
 }
+
+/// --- BEGIN ADDITIONS ---
+model Build {
+  id        String   @id @default(cuid())
+  tenantId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant   Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  slots    BuildSlot[]
+  lists    BuildOnList[]
+}
+
+model BuildSlot {
+  id        String  @id @default(cuid())
+  buildId   String
+  type      String   // e.g., "Blanks", "Reel Seat" (config-driven)
+  label     String   // editable label
+  productId String?  // selection can be null
+  variantId String?  // optional
+  position  Int      // for ordering
+
+  build Build @relation(fields: [buildId], references: [id], onDelete: Cascade)
+
+  @@index([buildId, position])
+}
+
+model List {
+  id        String       @id @default(cuid())
+  tenantId  Int
+  name      String
+  createdAt DateTime     @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  builds BuildOnList[]
+
+  @@unique([tenantId, name])
+}
+
+model BuildOnList {
+  id      String @id @default(cuid())
+  buildId String
+  listId  String
+
+  build Build @relation(fields: [buildId], references: [id], onDelete: Cascade)
+  list  List  @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@unique([buildId, listId])
+}
+/// --- END ADDITIONS ---

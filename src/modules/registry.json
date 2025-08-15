@@ -1,1 +1,7 @@
-{}
+{
+  "shell": {
+    "version": "0.1.0",
+    "path": "/apps/rbp/modules/shell/0.1.0/index.js",
+    "checksum": "DEV"
+  }
+}
