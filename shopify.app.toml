@@ -3,8 +3,11 @@
 client_id = "c2878634e703f7baa694ee1c0a4e57d2"
 name = "rod-builder-pro"
 handle = "rod-builder-pro-2"
-application_url = "https://sitting-interview-thompson-horse.trycloudflare.com"
+application_url = "https://pads-cultural-mozambique-venues.trycloudflare.com/"
 embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
 
 [webhooks]
 api_version = "2025-07"
@@ -14,15 +17,16 @@ api_version = "2025-07"
 scopes = "write_products"
 
 [auth]
-redirect_urls = ["https://sitting-interview-thompson-horse.trycloudflare.com/auth/callback", "https://sitting-interview-thompson-horse.trycloudflare.com/auth/shopify/callback", "https://sitting-interview-thompson-horse.trycloudflare.com/api/auth/callback"]
+redirect_urls = [
+  "https://pads-cultural-mozambique-venues.trycloudflare.com/auth/callback",
+  "https://pads-cultural-mozambique-venues.trycloudflare.com/auth/shopify/callback",
+  "https://pads-cultural-mozambique-venues.trycloudflare.com/api/auth/callback"
+]
 
 [app_proxy]
-url = "https://sitting-interview-thompson-horse.trycloudflare.com/apps/rbp"
+url = "https://pads-cultural-mozambique-venues.trycloudflare.com/"
 subpath = "rbp"
 prefix = "apps"
 
 [pos]
 embedded = false
-
-[build]
-automatically_update_urls_on_dev = true

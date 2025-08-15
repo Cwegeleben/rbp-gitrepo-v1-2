@@ -1,0 +1,26 @@
+# Learn more: https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "c2878634e703f7baa694ee1c0a4e57d2"
+name = "rod-builder-pro"
+handle = "rod-builder-pro-2"
+embedded = true
+
+# CLI discovers web apps here (gateway Remix app)
+web_directories = ["src/apps/gateway/api-gateway"]
+
+# The CLI will auto-update these on dev because of the build flag below,
+# but they must exist to satisfy validation.
+application_url = "https://eur-vast-mambo-nov.trycloudflare.com"
+
+[auth]
+redirect_urls = ["https://eur-vast-mambo-nov.trycloudflare.com/auth/callback", "https://eur-vast-mambo-nov.trycloudflare.com/auth/shopify/callback", "https://eur-vast-mambo-nov.trycloudflare.com/api/auth/callback"]
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "rbp-dev.myshopify.com"
+
+[webhooks]
+api_version = "2025-07"
+
+[access_scopes]
+scopes = "write_products"

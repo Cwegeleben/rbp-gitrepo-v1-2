@@ -173,9 +173,9 @@ function App() {
   }, this);
 }
 
-// app/routes/apps.rbp.api.access.ctx.ts
-var apps_rbp_api_access_ctx_exports = {};
-__export(apps_rbp_api_access_ctx_exports, {
+// app/routes/api.access.ctx.ts
+var api_access_ctx_exports = {};
+__export(api_access_ctx_exports, {
   loader: () => loader
 });
 import { json } from "@remix-run/node";
@@ -186,21 +186,22 @@ async function loader() {
   );
 }
 
-// app/routes/api.access.ctx.ts
-var api_access_ctx_exports = {};
-__export(api_access_ctx_exports, {
+// app/routes/ping.ts
+var ping_exports = {};
+__export(ping_exports, {
+  action: () => action,
   loader: () => loader2
 });
 import { json as json2 } from "@remix-run/node";
 async function loader2() {
-  return json2(
-    { ok: !0, plan: "free", featureFlags: { catalog_v1: !0, builds_v1: !0, checkout_v1: !1 } },
-    { headers: { "Cache-Control": "no-store" } }
-  );
+  return json2({ ok: !0, service: "gateway" });
+}
+async function action() {
+  return json2({ ok: !0, service: "gateway" });
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-Y2CLN6O3.js", imports: ["/build/_shared/chunk-O4BRYNJ4.js", "/build/_shared/chunk-QVPUEGYJ.js", "/build/_shared/chunk-WZ5TJBLN.js", "/build/_shared/chunk-XGOTYLZ5.js", "/build/_shared/chunk-U4FRFQSK.js", "/build/_shared/chunk-7M6SC7J5.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-IKWSJRJT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/api.access.ctx": { id: "routes/api.access.ctx", parentId: "root", path: "api/access/ctx", index: void 0, caseSensitive: void 0, module: "/build/routes/api.access.ctx-E5VV74YD.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/apps.rbp.api.access.ctx": { id: "routes/apps.rbp.api.access.ctx", parentId: "root", path: "apps/rbp/api/access/ctx", index: void 0, caseSensitive: void 0, module: "/build/routes/apps.rbp.api.access.ctx-SIDBDE7V.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "90fcd26f", hmr: { runtime: "/build/_shared/chunk-WZ5TJBLN.js", timestamp: 1755273819155 }, url: "/build/manifest-90FCD26F.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-KOHZTMHU.js", imports: ["/build/_shared/chunk-O4BRYNJ4.js", "/build/_shared/chunk-FD3CIR3Q.js", "/build/_shared/chunk-WZ5TJBLN.js", "/build/_shared/chunk-XGOTYLZ5.js", "/build/_shared/chunk-U4FRFQSK.js", "/build/_shared/chunk-7M6SC7J5.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-PXIU7HM7.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/api.access.ctx": { id: "routes/api.access.ctx", parentId: "root", path: "api/access/ctx", index: void 0, caseSensitive: void 0, module: "/build/routes/api.access.ctx-E5VV74YD.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/ping": { id: "routes/ping", parentId: "root", path: "ping", index: void 0, caseSensitive: void 0, module: "/build/routes/ping-I42ZOY6D.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "a09d45fa", hmr: { runtime: "/build/_shared/chunk-WZ5TJBLN.js", timestamp: 1755280464458 }, url: "/build/manifest-A09D45FA.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var mode = "development", assetsBuildDirectory = "public/build", future = { v3_fetcherPersist: !1, v3_relativeSplatPath: !1, v3_throwAbortReason: !1, v3_routeConfig: !1, v3_singleFetch: !1, v3_lazyRouteDiscovery: !1, unstable_optimizeDeps: !1 }, publicPath = "/build/", entry = { module: entry_server_node_exports }, routes = {
@@ -212,14 +213,6 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     caseSensitive: void 0,
     module: root_exports
   },
-  "routes/apps.rbp.api.access.ctx": {
-    id: "routes/apps.rbp.api.access.ctx",
-    parentId: "root",
-    path: "apps/rbp/api/access/ctx",
-    index: void 0,
-    caseSensitive: void 0,
-    module: apps_rbp_api_access_ctx_exports
-  },
   "routes/api.access.ctx": {
     id: "routes/api.access.ctx",
     parentId: "root",
@@ -227,6 +220,14 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     index: void 0,
     caseSensitive: void 0,
     module: api_access_ctx_exports
+  },
+  "routes/ping": {
+    id: "routes/ping",
+    parentId: "root",
+    path: "ping",
+    index: void 0,
+    caseSensitive: void 0,
+    module: ping_exports
   }
 };
 export {
