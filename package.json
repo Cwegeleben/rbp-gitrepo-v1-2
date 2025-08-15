@@ -1,0 +1,14 @@
+{
+  "name": "rbp-monorepo-v1-2",
+  "private": true,
+  "workspaces": [
+    "gateway/api-gateway",
+    "shopify-app/admin.portal",
+    "packages/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "dev:gateway": "echo \"todo: add gateway dev script\"",
+    "dev:admin": "echo \"todo: add admin portal dev script\""
+  }
+}
