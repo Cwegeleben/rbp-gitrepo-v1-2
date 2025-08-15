@@ -3,7 +3,7 @@
 client_id = "c2878634e703f7baa694ee1c0a4e57d2"
 name = "rod-builder-pro"
 handle = "rod-builder-pro-2"
-application_url = "https://choice-bloggers-algorithms-block.trycloudflare.com/"
+application_url = "https://chorus-forth-includes-naval.trycloudflare.com"
 embedded = true
 
 [webhooks]
@@ -12,19 +12,17 @@ api_version = "2025-07"
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "write_products"
-web_directories = ["src/apps/gateway/api-gateway"]
 
 [auth]
-redirect_urls = [
-  "https://choice-bloggers-algorithms-block.trycloudflare.com/auth/callback",
-  "https://choice-bloggers-algorithms-block.trycloudflare.com/auth/shopify/callback",
-  "https://choice-bloggers-algorithms-block.trycloudflare.com/api/auth/callback"
-]
+redirect_urls = ["https://chorus-forth-includes-naval.trycloudflare.com/auth/callback", "https://chorus-forth-includes-naval.trycloudflare.com/auth/shopify/callback", "https://chorus-forth-includes-naval.trycloudflare.com/api/auth/callback"]
 
 [app_proxy]
-url = "https://choice-bloggers-algorithms-block.trycloudflare.com/apps/rbp"
+url = "https://chorus-forth-includes-naval.trycloudflare.com/apps/rbp"
 subpath = "rbp"
 prefix = "apps"
 
 [pos]
 embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
