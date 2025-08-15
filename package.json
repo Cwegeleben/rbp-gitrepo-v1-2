@@ -9,6 +9,31 @@
   ],
   "scripts": {
     "dev:gateway": "echo \"todo: add gateway dev script\"",
-    "dev:admin": "echo \"todo: add admin portal dev script\""
+    "dev:admin": "echo \"todo: add admin portal dev script\"",
+    "dev:up": "concurrently -n GW,THEME,ADMIN -c auto \"pnpm -C src/apps/gateway/api-gateway dev\" \"pnpm -C src/apps/storefront/rbp-theme dev\" \"pnpm -C src/apps/admin/admin.portal dev\"",
+    "dev:down": "pkill -f 'node .*api-gateway' || true && pkill -f 'rbp-theme' || true && pkill -f 'admin.portal' || true",
+    "db:reset": "prisma db push --force-reset && pnpm db:seed",
+    "db:drop": "prisma db push --force-reset",
+    "db:migrate": "prisma db push",
+    "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' src/packages/catalog/scripts/seed.ts",
+
+    "mock:suppliers": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' src/packages/catalog/scripts/mock-suppliers.ts",
+    "reset:modules": "rimraf src/modules/**/dist && ts-node --compiler-options '{\"module\":\"CommonJS\"}' src/packages/module-registry/scripts/rebuild-registry.ts",
+
+    "smoke": "NODE_OPTIONS=--experimental-fetch node scripts/smoke-test.js",
+    
+    "test": "vitest run",
+    "test:contracts": "vitest run --config vitest.contract.config.ts"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "node-fetch": "^3.3.2",
+    "prisma": "^6.14.0",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@prisma/client": "6.14.0"
   }
 }

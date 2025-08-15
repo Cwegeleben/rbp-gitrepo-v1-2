@@ -4,7 +4,7 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: !0 });
 };
 
-// node_modules/@remix-run/dev/dist/config/defaults/entry.server.node.tsx
+// ../../../../node_modules/.pnpm/@remix-run+dev@2.17.0_@remix-run+react@2.17.0_react-dom@18.3.1_react@18.3.1__react@18.3_41d50b8e2900ac1533c0eccba8c9f8ae/node_modules/@remix-run/dev/dist/config/defaults/entry.server.node.tsx
 var entry_server_node_exports = {};
 __export(entry_server_node_exports, {
   default: () => handleRequest
@@ -45,7 +45,7 @@ function handleBotRequest(request, responseStatusCode, responseHeaders, remixCon
         void 0,
         !1,
         {
-          fileName: "node_modules/@remix-run/dev/dist/config/defaults/entry.server.node.tsx",
+          fileName: "../../../../node_modules/.pnpm/@remix-run+dev@2.17.0_@remix-run+react@2.17.0_react-dom@18.3.1_react@18.3.1__react@18.3_41d50b8e2900ac1533c0eccba8c9f8ae/node_modules/@remix-run/dev/dist/config/defaults/entry.server.node.tsx",
           lineNumber: 66,
           columnNumber: 7
         },
@@ -86,7 +86,7 @@ function handleBrowserRequest(request, responseStatusCode, responseHeaders, remi
         void 0,
         !1,
         {
-          fileName: "node_modules/@remix-run/dev/dist/config/defaults/entry.server.node.tsx",
+          fileName: "../../../../node_modules/.pnpm/@remix-run+dev@2.17.0_@remix-run+react@2.17.0_react-dom@18.3.1_react@18.3.1__react@18.3_41d50b8e2900ac1533c0eccba8c9f8ae/node_modules/@remix-run/dev/dist/config/defaults/entry.server.node.tsx",
           lineNumber: 116,
           columnNumber: 7
         },
@@ -173,14 +173,79 @@ function App() {
   }, this);
 }
 
-// app/routes/api.access.ctx.ts
-var api_access_ctx_exports = {};
-__export(api_access_ctx_exports, {
+// app/routes/apps.rbp.api.catalog.collections.ts
+var apps_rbp_api_catalog_collections_exports = {};
+__export(apps_rbp_api_catalog_collections_exports, {
   loader: () => loader
 });
 import { json } from "@remix-run/node";
-async function loader() {
-  return json(
+
+// ../../../shared/db/client.ts
+import { PrismaClient } from "@prisma/client";
+var prisma = new PrismaClient();
+
+// app/routes/apps.rbp.api.catalog.collections.ts
+async function loader(_args) {
+  let domain = "demo.myshopify.com", tenant = await prisma.tenant.findUnique({ where: { domain } });
+  if (!tenant)
+    return json({ items: [] });
+  let collections = await prisma.collection.findMany({
+    where: { tenantId: tenant.id },
+    orderBy: { name: "asc" }
+  });
+  return json({
+    items: collections.map((c) => ({ id: c.id, name: c.name }))
+  });
+}
+
+// app/routes/apps.rbp.api.catalog.products.ts
+var apps_rbp_api_catalog_products_exports = {};
+__export(apps_rbp_api_catalog_products_exports, {
+  loader: () => loader2
+});
+import { json as json2 } from "@remix-run/node";
+async function loader2({ request }) {
+  let domain = "demo.myshopify.com", collectionId = new URL(request.url).searchParams.get("collection"), tenant = await prisma.tenant.findUnique({ where: { domain } });
+  if (!tenant || !collectionId)
+    return json2({ items: [] });
+  let products = await prisma.product.findMany({
+    where: { tenantId: tenant.id, collectionId },
+    orderBy: { name: "asc" }
+  });
+  return json2({
+    items: products.map((p) => ({
+      id: p.id,
+      collectionId: p.collectionId,
+      name: p.name,
+      priceCents: p.priceCents
+    }))
+  });
+}
+
+// app/routes/apps.rbp.api.access.ctx.ts
+var apps_rbp_api_access_ctx_exports = {};
+__export(apps_rbp_api_access_ctx_exports, {
+  loader: () => loader3
+});
+import { json as json3 } from "@remix-run/node";
+async function loader3(_args) {
+  let domain = "demo.myshopify.com", tenant = await prisma.tenant.findUnique({
+    where: { domain }
+  });
+  return tenant ? json3({
+    tenant,
+    now: (/* @__PURE__ */ new Date()).toISOString()
+  }) : json3({ error: "Tenant not found" }, { status: 404 });
+}
+
+// app/routes/api.access.ctx.ts
+var api_access_ctx_exports = {};
+__export(api_access_ctx_exports, {
+  loader: () => loader4
+});
+import { json as json4 } from "@remix-run/node";
+async function loader4() {
+  return json4(
     { ok: !0, plan: "free", featureFlags: { catalog_v1: !0, builds_v1: !0, checkout_v1: !1 } },
     { headers: { "Cache-Control": "no-store" } }
   );
@@ -190,18 +255,18 @@ async function loader() {
 var ping_exports = {};
 __export(ping_exports, {
   action: () => action,
-  loader: () => loader2
+  loader: () => loader5
 });
-import { json as json2 } from "@remix-run/node";
-async function loader2() {
-  return json2({ ok: !0, service: "gateway" });
+import { json as json5 } from "@remix-run/node";
+async function loader5() {
+  return json5({ ok: !0, service: "gateway" });
 }
 async function action() {
-  return json2({ ok: !0, service: "gateway" });
+  return json5({ ok: !0, service: "gateway" });
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-KOHZTMHU.js", imports: ["/build/_shared/chunk-O4BRYNJ4.js", "/build/_shared/chunk-FD3CIR3Q.js", "/build/_shared/chunk-WZ5TJBLN.js", "/build/_shared/chunk-XGOTYLZ5.js", "/build/_shared/chunk-U4FRFQSK.js", "/build/_shared/chunk-7M6SC7J5.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-PXIU7HM7.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/api.access.ctx": { id: "routes/api.access.ctx", parentId: "root", path: "api/access/ctx", index: void 0, caseSensitive: void 0, module: "/build/routes/api.access.ctx-E5VV74YD.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/ping": { id: "routes/ping", parentId: "root", path: "ping", index: void 0, caseSensitive: void 0, module: "/build/routes/ping-I42ZOY6D.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "a09d45fa", hmr: { runtime: "/build/_shared/chunk-WZ5TJBLN.js", timestamp: 1755280464458 }, url: "/build/manifest-A09D45FA.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-OFXGPWWA.js", imports: ["/build/_shared/chunk-JHHIYDHV.js", "/build/_shared/chunk-O3OPJ2LN.js", "/build/_shared/chunk-AO7FZ56T.js", "/build/_shared/chunk-YBUKXD5O.js", "/build/_shared/chunk-DY665R7U.js", "/build/_shared/chunk-H6IH5AEU.js", "/build/_shared/chunk-4VGT7TYS.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-XHQGCKVH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/api.access.ctx": { id: "routes/api.access.ctx", parentId: "root", path: "api/access/ctx", index: void 0, caseSensitive: void 0, module: "/build/routes/api.access.ctx-E5VV74YD.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/apps.rbp.api.access.ctx": { id: "routes/apps.rbp.api.access.ctx", parentId: "root", path: "apps/rbp/api/access/ctx", index: void 0, caseSensitive: void 0, module: "/build/routes/apps.rbp.api.access.ctx-SIDBDE7V.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/apps.rbp.api.catalog.collections": { id: "routes/apps.rbp.api.catalog.collections", parentId: "root", path: "apps/rbp/api/catalog/collections", index: void 0, caseSensitive: void 0, module: "/build/routes/apps.rbp.api.catalog.collections-FJJUFXVO.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/apps.rbp.api.catalog.products": { id: "routes/apps.rbp.api.catalog.products", parentId: "root", path: "apps/rbp/api/catalog/products", index: void 0, caseSensitive: void 0, module: "/build/routes/apps.rbp.api.catalog.products-JP7H6OCC.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/ping": { id: "routes/ping", parentId: "root", path: "ping", index: void 0, caseSensitive: void 0, module: "/build/routes/ping-I42ZOY6D.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "3948c22b", hmr: { runtime: "/build/_shared/chunk-AO7FZ56T.js", timestamp: 1755285089191 }, url: "/build/manifest-3948C22B.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var mode = "development", assetsBuildDirectory = "public/build", future = { v3_fetcherPersist: !1, v3_relativeSplatPath: !1, v3_throwAbortReason: !1, v3_routeConfig: !1, v3_singleFetch: !1, v3_lazyRouteDiscovery: !1, unstable_optimizeDeps: !1 }, publicPath = "/build/", entry = { module: entry_server_node_exports }, routes = {
@@ -212,6 +277,30 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     index: void 0,
     caseSensitive: void 0,
     module: root_exports
+  },
+  "routes/apps.rbp.api.catalog.collections": {
+    id: "routes/apps.rbp.api.catalog.collections",
+    parentId: "root",
+    path: "apps/rbp/api/catalog/collections",
+    index: void 0,
+    caseSensitive: void 0,
+    module: apps_rbp_api_catalog_collections_exports
+  },
+  "routes/apps.rbp.api.catalog.products": {
+    id: "routes/apps.rbp.api.catalog.products",
+    parentId: "root",
+    path: "apps/rbp/api/catalog/products",
+    index: void 0,
+    caseSensitive: void 0,
+    module: apps_rbp_api_catalog_products_exports
+  },
+  "routes/apps.rbp.api.access.ctx": {
+    id: "routes/apps.rbp.api.access.ctx",
+    parentId: "root",
+    path: "apps/rbp/api/access/ctx",
+    index: void 0,
+    caseSensitive: void 0,
+    module: apps_rbp_api_access_ctx_exports
   },
   "routes/api.access.ctx": {
     id: "routes/api.access.ctx",

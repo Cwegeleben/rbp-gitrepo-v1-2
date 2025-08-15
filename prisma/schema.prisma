@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Tenant {
+  id      Int     @id @default(autoincrement())
+  domain  String  @unique
+  plan    String
+  flags   Json
+
+  collections Collection[]
+  products    Product[]
+}
+
+model Collection {
+  id       String  @id
+  tenantId Int
+  name     String
+
+  tenant   Tenant  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  products Product[]
+}
+
+model Product {
+  id           String  @id
+  tenantId     Int
+  collectionId String
+  name         String
+  priceCents   Int
+
+  tenant     Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  collection Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+}
